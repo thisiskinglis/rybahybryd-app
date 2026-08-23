@@ -2,298 +2,116 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#05050A">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://app.rybahybryd.com/">
 <meta property="og:title" content="RYBAHYBRYD - Official App">
-<meta property="og:description" content="Exclusive feed, lyrics, beats. Direct from Rybahybryd.">
-<meta property="og:image" content="/assets/images/og-image.jpg">
-<title>RYBAHYBRYD</title>
+<meta property="og:description" content="INSTALL APP NOW → Exclusive feed, lyrics, beats. Direct from Rybahybryd. No App Store needed.">
+<meta property="og:image" content="https://app.rybahybryd.com/assets/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<title>RYBAHYBRYD - Official App</title>
 <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#05050A">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{overflow:hidden;height:100%;overscroll-behavior:none}
-body{background:#05050A;color:#fff;font-family:Inter,sans-serif;height:100%;overflow:hidden;display:flex;flex-direction:column;overscroll-behavior:none;-webkit-font-smoothing:antialiased}
-.bg-glow{position:fixed;top:-20%;left:-10%;width:80%;height:80%;background:radial-gradient(ellipse at center, rgba(120,60,255,0.18), transparent 70%);pointer-events:none;filter:blur(40px);z-index:0}
-button,a{font-family:inherit}
-.app-shell{position:relative;z-index:1;display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto;width:100%;background:#05050A;overflow:hidden}
-@media(min-width:600px){.app-shell{border-left:1px solid #111;border-right:1px solid #111}}
-
-/* Header */
-.top-bar{height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:rgba(5,5,10,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #111;position:relative;z-index:10;padding-top:env(safe-area-inset-top)}
-.top-logo{width:32px;height:32px;background:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:10px;letter-spacing:1px;border:1px solid #222}
-.live-pill{display:flex;align-items:center;gap:6px;background:rgba(107,255,138,0.1);border:1px solid rgba(107,255,138,0.2);padding:4px 10px;border-radius:20px;font-size:9px;letter-spacing:1px;color:#6BFF8A;font-weight:800}
-.live-pill i{width:6px;height:6px;background:#6BFF8A;border-radius:50%;box-shadow:0 0 6px #6BFF8A;animation:pulse 1.5s infinite}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:#05050A;color:#fff;font-family:Inter,sans-serif;overflow-x:hidden;min-height:100vh;-webkit-text-size-adjust:100%}
+.bg-glow{position:fixed;top:-20%;left:-10%;width:80%;height:80%;background:radial-gradient(ellipse at center, rgba(120,60,255,0.18), transparent 70%);pointer-events:none;filter:blur(40px)}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 40px;position:relative;z-index:2;width:100%;overflow:hidden}
+.top-logo{display:flex;justify-content:center;margin-bottom:24px}
+.top-logo img{width:88px;height:auto;filter:drop-shadow(0 0 20px rgba(255,255,255,0.3));max-width:24vw}
+.hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:32px;align-items:center;min-width:0}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:20px}}
+.hero > div{min-width:0}
+.ryba{font-family:Syne,sans-serif;font-weight:800;font-size:72px;line-height:0.85;letter-spacing:-2px;max-width:100%}
+.ryba span{display:block;max-width:100%;overflow:hidden}
+.ryba .l1{color:#C9A8FF;text-shadow:0 0 30px rgba(201,168,255,0.6)}
+.ryba .l2{color:#6B7CFF;text-shadow:0 0 30px rgba(107,124,255,0.6)}
+@media(max-width:800px){.ryba{font-size:clamp(36px, 12.5vw, 56px);letter-spacing:-1.5px;line-height:0.9}}
+@media(max-width:400px){.ryba{font-size:clamp(32px, 11vw, 48px);letter-spacing:-1px}.wrap{padding:20px 14px 30px}}
+@media(max-width:360px){.ryba{font-size:clamp(28px, 10vw, 42px)}}
+.tagline{margin-top:16px;font-size:clamp(14px, 4vw, 18px);line-height:1.35;max-width:100%;word-wrap:break-word}
+.tagline b{font-weight:800}
+.tagline .p{color:#B07CFF}
+.tagline .c{color:#4ECDC4}
+.pills{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.pills span{border:1px solid #222;padding:4px 10px;border-radius:20px;font-size:9px;letter-spacing:1.5px;color:#555}
+.cards{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:16px;position:relative;overflow:hidden;transition:.2s;text-decoration:none;color:#fff;display:block;min-width:0}
+.card:hover{border-color:#333;transform:translateY(-2px)}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.card-top label{font-size:10px;letter-spacing:2px;color:#555;font-weight:700}
+.live{display:flex;align-items:center;gap:6px;background:rgba(107,255,138,0.1);border:1px solid rgba(107,255,138,0.2);padding:3px 8px;border-radius:20px;font-size:9px;letter-spacing:1px;color:#6BFF8A;font-weight:800;white-space:nowrap}
+.live i{width:6px;height:6px;background:#6BFF8A;border-radius:50%;box-shadow:0 0 6px #6BFF8A;display:inline-block;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* Views container */
-.views{flex:1;overflow:hidden;position:relative}
-.view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:16px 16px 20px;transform:translateX(100%);opacity:0;transition:transform .28s cubic-bezier(.32,.72,0,1), opacity .22s;pointer-events:none}
-.view.active{transform:translateX(0);opacity:1;pointer-events:auto}
-.view.exit-left{transform:translateX(-20%);opacity:0}
-
-/* Hero inside feed view */
-.hero-title{font-family:Syne,sans-serif;font-weight:800;line-height:0.85;letter-spacing:-1.5px;margin:8px 0 12px;font-size:clamp(32px, 9vw, 48px)}
-.hero-title .l1{color:#C9A8FF;display:block;text-shadow:0 0 30px rgba(201,168,255,0.5)}
-.hero-title .l2{color:#6B7CFF;display:block;text-shadow:0 0 30px rgba(107,124,255,0.5)}
-.tagline{font-size:13px;color:#888;line-height:1.4;margin-bottom:12px}
-.pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.pills span{border:1px solid #222;padding:3px 9px;border-radius:20px;font-size:8px;letter-spacing:1.2px;color:#555}
-
-/* Cards */
-.post{background:#0F0F14;border:1px solid #1E1E26;border-radius:20px;padding:14px;margin-bottom:12px;transition:transform .1s}
-.post:active{transform:scale(.98)}
-.post-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.badge{background:#111;border:1px solid #222;padding:2px 8px;border-radius:10px;font-size:8px;letter-spacing:1px;color:#888}
-.post small{color:#444;font-size:9px}
-.post p{font-size:13px;line-height:1.4;margin:6px 0 0}
-.post img{width:100%;border-radius:14px;margin-top:10px;display:block;background:#000;max-height:520px;object-fit:cover}
-.post video{width:100%;border-radius:14px;margin-top:10px;background:#000}
-.post audio{width:100%;margin-top:10px;height:36px}
-.post-actions{display:flex;gap:8px;margin-top:10px}
-.action-btn{flex:1;border:1px solid #222;background:#0A0A0F;padding:8px;border-radius:12px;font-size:10px;letter-spacing:1px;color:#666;display:flex;align-items:center;justify-content:center;gap:6px}
-.action-btn:active{background:#15151E;color:#fff}
-
-/* Lyrics */
-.song{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:16px;margin-bottom:12px;transition:transform .1s}
-.song:active{transform:scale(.98)}
-.song h3{font-size:13px;letter-spacing:1px}
-.song pre{margin-top:10px;color:#AAA;white-space:pre-wrap;line-height:1.6;font-size:12.5px;word-wrap:break-word;max-height:160px;overflow:hidden;position:relative}
-.song.expanded pre{max-height:none}
-.song pre:after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(transparent,#0F0F14);pointer-events:none}
-.song.expanded pre:after{display:none}
-.lyric-fade{color:#555;font-size:10px;margin-top:8px}
-
-/* Beats */
-.beat{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:14px;margin-bottom:12px;display:flex;gap:12px;align-items:center;transition:transform .1s}
-.beat:active{transform:scale(.98)}
-.beat-play{width:44px;height:44px;border-radius:50%;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:none}
-.beat-info{flex:1;min-width:0}
-.beat-info h4{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.beat-info small{color:#555;font-size:10px}
-.beat-price{font-weight:800;font-size:12px}
-.buy-btn{border:1px solid #fff;padding:6px 12px;border-radius:20px;font-size:10px;letter-spacing:1px;background:transparent;color:#fff;margin-top:4px;display:inline-block;text-decoration:none}
-
-/* Bottom Nav */
-.bottom-nav{height:76px;flex-shrink:0;background:rgba(10,10,15,0.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid #1A1A24;display:flex;align-items:center;justify-content:space-around;padding:6px 8px 0;position:relative;z-index:20;padding-bottom:calc(6px + env(safe-area-inset-bottom))}
-.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;border-radius:14px;transition:.2s;border:none;background:transparent;color:#555}
-.tab.active{color:#fff}
-.tab.active .tab-icon{background:#fff;color:#000}
-.tab-icon{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;transition:.2s}
-.tab-label{font-size:8px;letter-spacing:1.2px;font-weight:700}
-
-/* Mini Player */
-.mini-player{position:absolute;bottom:76px;left:8px;right:8px;background:#16161F;border:1px solid #2A2A35;border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:10px;transform:translateY(120%);transition:transform .3s cubic-bezier(.32,.72,0,1);z-index:15;box-shadow:0 10px 30px rgba(0,0,0,.5);padding-bottom:calc(10px + env(safe-area-inset-bottom, 0px))}
-.mini-player.show{transform:translateY(0)}
-.mini-bar{flex:1;height:3px;background:#222;border-radius:10px;overflow:hidden}
-.mini-bar div{height:100%;background:#fff;width:30%;border-radius:10px}
-
-/* Lightbox */
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
-.lightbox.show{display:flex}
-.lightbox img{max-width:100%;max-height:90vh;border-radius:12px}
-.lightbox-close{position:absolute;top:20px;right:20px;background:#222;border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:16px}
-
-/* Pull refresh */
-.ptr{height:40px;display:flex;align-items:center;justify-content:center;color:#555;font-size:10px;letter-spacing:1px;transform:translateY(-40px);margin-top:-40px;transition:transform .2s}
-.ptr.pull{transform:translateY(0)}
-
-.skeleton{background:linear-gradient(90deg,#0F0F14 25%,#1A1A24 50%,#0F0F14 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;border-radius:12px}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.card-main{margin-top:24px;display:flex;align-items:end;justify-content:space-between}
+.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C9A8FF,#6B7CFF);padding:1px;flex-shrink:0}
+.avatar div{width:100%;height:100%;border-radius:50%;background:#0F0F14;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:10px}
+.bars{flex:1;margin:0 12px;min-width:0}
+.bars div{height:6px;border-radius:10px;margin-bottom:6px}
+.bars div:first-child{width:70%;background:#2A2A35}
+.bars div:last-child{width:45%;background:#1A1A24}
+.arrow{font-size:20px;color:#333;flex-shrink:0}
+.small-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:360px){.small-grid{gap:10px}}
+.small-card{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:14px;height:102px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:#fff;transition:.2s;min-width:0;overflow:hidden}
+.small-card:hover{border-color:#333}
+.social{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}
+.social a{border:1px solid #1E1E26;background:#0A0A0F;padding:6px 12px;border-radius:20px;font-size:9px;letter-spacing:1.5px;color:#555;text-decoration:none;white-space:nowrap}
+.wave{margin-top:16px;width:100%;height:28px;overflow:hidden}
+.install-wrap{display:flex;justify-content:center;margin-top:32px;padding-bottom:20px;flex-direction:column;align-items:center}
+.install-btn{background:#fff;color:#2A1FFF;border:none;padding:18px 48px;border-radius:100px;font-weight:900;letter-spacing:1.5px;font-size:14px;cursor:pointer;box-shadow:0 10px 40px rgba(255,255,255,0.15);transition:.2s;max-width:90vw}
+.install-btn:hover{transform:scale(1.05)}
+.install-btn.hide{display:none}
+.ios{color:#666;font-size:11px;text-align:center;margin-top:12px;display:none;padding:0 10px}
+.open-app{margin-top:12px;color:#666;font-size:11px}
+.open-app a{color:#888;text-decoration:underline}
 </style>
 </head>
 <body>
 <div class="bg-glow"></div>
-<div class="app-shell">
-  <div class="top-bar">
-    <div class="top-logo">RH</div>
-    <div style="font-family:Syne;font-weight:800;letter-spacing:2px;font-size:12px">RYBAHYBRYD</div>
-    <div class="live-pill"><i></i>LIVE</div>
-  </div>
-
-  <div class="views" id="views">
-    <div class="ptr" id="ptr">↻ PULL TO REFRESH</div>
-    
-    <!-- FEED -->
-    <div class="view active" id="view-feed">
-      <div class="hero-title"><span class="l1">RYBA</span><span class="l2">HYBRYD</span></div>
-      <div class="tagline"><b>From chaos to creation.</b> Music. Philosophy. Transformation.</div>
+<div class="wrap">
+  <div class="top-logo"><img src="/assets/images/rh-logo.png" onerror="this.style.display='none'" alt="RH"></div>
+  <div class="hero">
+    <div>
+      <div class="ryba"><span class="l1">RYBA</span><span class="l2">HYBRYD</span></div>
+      <div class="tagline"><b>From chaos to creation.</b> Music. <span class="p">Philosophy.</span> <span class="c">Transformation.</span> Legacy.</div>
       <div class="pills"><span>DRAGON</span><span>FISH</span><span>STORYTELLER</span></div>
-      <div id="feed-list">
-        <div class="skeleton" style="height:280px;margin-bottom:12px"></div>
-        <div class="skeleton" style="height:120px;margin-bottom:12px"></div>
-      </div>
     </div>
-
-    <!-- LYRICS -->
-    <div class="view" id="view-lyrics">
-      <h2 style="font-family:Syne;letter-spacing:2px;font-size:16px;margin:6px 0 4px">VERSE ARCHIVE</h2>
-      <p style="color:#555;font-size:11px;margin-bottom:16px">Tap to expand • Gold Tooth and more</p>
-      <div id="lyrics-list">
-        <div class="skeleton" style="height:100px;margin-bottom:12px"></div>
+    <div class="cards">
+      <a href="app/" class="card"><div class="card-top"><label>FEED</label><span class="live"><i></i>LIVE NOW</span></div><div class="card-main"><div class="avatar"><div>RH</div></div><div class="bars"><div></div><div></div></div><div class="arrow">↗</div></div></a>
+      <div class="small-grid">
+        <a href="app/#lyrics" class="small-card"><div style="display:flex;justify-content:space-between;gap:4px"><label style="font-size:9px;letter-spacing:1.5px;color:#555;font-weight:700">LYRICS</label><span style="color:#333">↗</span></div><div><div style="font-size:11px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">VERSE ARCHIVE</div><div style="font-size:9px;color:#555;margin-top:4px;letter-spacing:1px">12 TRACKS</div></div></a>
+        <a href="app/#beats" class="small-card"><div style="display:flex;justify-content:space-between;gap:4px"><label style="font-size:9px;letter-spacing:1.5px;color:#555;font-weight:700">BEATS</label><span style="color:#333">↗</span></div><div><div style="font-size:11px;font-weight:800">BEAT LAB</div><div style="font-size:9px;color:#555;margin-top:4px;letter-spacing:1px">EXCLUSIVE</div></div></a>
       </div>
-    </div>
-
-    <!-- BEATS -->
-    <div class="view" id="view-beats">
-      <h2 style="font-family:Syne;letter-spacing:2px;font-size:16px;margin:6px 0 4px">BEAT LAB</h2>
-      <p style="color:#555;font-size:11px;margin-bottom:16px">Exclusive • Tap play to preview</p>
-      <div id="beats-list">
-        <div class="skeleton" style="height:80px;margin-bottom:12px"></div>
-      </div>
-    </div>
-
-    <!-- MORE -->
-    <div class="view" id="view-more">
-      <h2 style="font-family:Syne;letter-spacing:2px;font-size:16px;margin:6px 0 12px">CONNECT</h2>
-      <div style="display:grid;gap:10px">
-        <a href="#" class="song" style="text-decoration:none;display:block"><h3>YT • YOUTUBE</h3><small style="color:#555">Watch latest videos</small></a>
-        <a href="#" class="song" style="text-decoration:none;display:block"><h3>IG • INSTAGRAM</h3><small style="color:#555">@rybahybryd</small></a>
-        <a href="#" class="song" style="text-decoration:none;display:block"><h3>TT • TIKTOK</h3><small style="color:#555">Shorts & BTS</small></a>
-        <a href="#" class="song" style="text-decoration:none;display:block"><h3>FB • FACEBOOK</h3><small style="color:#555">Community</small></a>
-      </div>
-      <div style="margin-top:24px;padding:14px;border:1px dashed #222;border-radius:14px;color:#444;font-size:11px;line-height:1.5">
-        App Version 4.0 • PWA Native Shell<br>
-        Feed auto-updates on open • No reinstall needed for content
-      </div>
+      <div class="social"><a href="#">YT • YOUTUBE</a><a href="#">IG • INSTAGRAM</a><a href="#">TT • TIKTOK</a><a href="#">FB • FACEBOOK</a></div>
+      <div class="wave"><svg viewBox="0 0 400 28" preserveAspectRatio="none" style="width:100%;height:100%"><path d="M0 14 L20 6 L40 18 L60 4 L80 16 L100 8 L120 20 L140 6 L160 14 L180 10 L200 18 L220 6 L240 14 L260 20 L280 8 L300 16 L320 4 L340 18 L360 10 L380 14 L400 14" fill="none" stroke="url(#g)" stroke-width="2"/><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#B07CFF"/><stop offset="50%" stop-color="#FF8A3D"/><stop offset="100%" stop-color="#4ECDC4"/></linearGradient></defs></svg></div>
     </div>
   </div>
-
-  <div class="mini-player" id="miniPlayer">
-    <button class="beat-play" id="miniPlayBtn">❚❚</button>
-    <div style="flex:1;min-width:0">
-      <div id="miniTitle" style="font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Dark Trap 140 BPM</div>
-      <div class="mini-bar"><div id="miniProgress"></div></div>
-    </div>
-    <button style="background:transparent;border:none;color:#666;font-size:14px" onclick="closeMini()">✕</button>
-  </div>
-
-  <div class="bottom-nav">
-    <button class="tab active" data-tab="feed"><div class="tab-icon">◉</div><div class="tab-label">FEED</div></button>
-    <button class="tab" data-tab="lyrics"><div class="tab-icon">≡</div><div class="tab-label">LYRICS</div></button>
-    <button class="tab" data-tab="beats"><div class="tab-icon">♫</div><div class="tab-label">BEATS</div></button>
-    <button class="tab" data-tab="more"><div class="tab-icon">☰</div><div class="tab-label">MORE</div></button>
+  <div class="install-wrap">
+    <button id="installBtn" class="install-btn">INSTALL APP</button>
+    <div id="iosHint" class="ios">iPhone: Tap Share → Add to Home Screen</div>
+    <div class="open-app">Already installed? <a href="app/">Open App →</a></div>
   </div>
 </div>
-
-<div class="lightbox" id="lightbox" onclick="this.classList.remove('show')"><button class="lightbox-close">✕</button><img id="lbImg" src=""></div>
-
 <script>
-// haptic helper
-const haptic = (ms=10)=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
-
-const views = {feed:document.getElementById('view-feed'), lyrics:document.getElementById('view-lyrics'), beats:document.getElementById('view-beats'), more:document.getElementById('view-more')};
-let current='feed';
-
-function switchTab(tab){
-  if(tab===current) return;
-  haptic(12);
-  const prev=views[current];
-  const next=views[tab];
-  prev.classList.add('exit-left');
-  prev.classList.remove('active');
-  setTimeout(()=>prev.classList.remove('exit-left'),280);
-  next.classList.add('active');
-  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
-  current=tab;
-  // lazy load
-  if(tab==='lyrics' && !window.lyricsLoaded) loadLyrics();
-  if(tab==='beats' && !window.beatsLoaded) loadBeats();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js?v=5')}
+let deferredPrompt;
+const btn=document.getElementById('installBtn');
+const iosHint=document.getElementById('iosHint');
+const isIos=/iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+if(isStandalone){window.location.href='app/';}
+else if(isIos){
+  btn.classList.remove('hide'); iosHint.style.display='block';
+  btn.onclick=()=>iosHint.scrollIntoView({behavior:'smooth'});
+}else{
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;btn.classList.remove('hide')});
+  btn.addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();const c=await deferredPrompt.userChoice;if(c.outcome==='accepted')btn.classList.add('hide');deferredPrompt=null}else{window.location.href='app/'}});
+  setTimeout(()=>{btn.classList.remove('hide')},800);
 }
-document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
-
-// FEED
-async function loadFeed(){
-  try{
-    const r=await fetch('feed/data.json?v='+Date.now(),{cache:'no-store'});
-    const posts=await r.json();
-    document.getElementById('feed-list').innerHTML=posts.map(p=>{
-      let media='';
-      if(p.type==='image') media=`<img src="${p.file}?v=${Date.now()}" loading="lazy" onclick="openLightbox('${p.file}')">`;
-      if(p.type==='voice') media=`<audio controls preload="none" src="${p.file}"></audio>`;
-      if(p.type==='video') media=`<video controls playsinline preload="none" src="${p.file}"></video>`;
-      return `<div class="post"><div class="post-head"><span class="badge">${p.type.toUpperCase()}</span><small>${p.date}</small></div><p>${p.caption}</p>${media}<div class="post-actions"><button class="action-btn" onclick="sharePost('${p.caption}')">↗ Share</button><button class="action-btn" onclick="haptic(20)">♡ Like</button></div></div>`;
-    }).join('');
-  }catch(e){document.getElementById('feed-list').innerHTML='<p style="color:#f55;font-size:12px">Feed error '+e+'</p>'}
-}
-loadFeed();
-
-// LYRICS
-async function loadLyrics(){
-  window.lyricsLoaded=true;
-  try{
-    const r=await fetch('lyrics/data.json?v='+Date.now(),{cache:'no-store'});
-    const songs=await r.json();
-    const list=document.getElementById('lyrics-list');
-    list.innerHTML='';
-    for(const s of songs){
-      let text=s.lyrics||'';
-      if(s.file){
-        try{const rr=await fetch(s.file+'?v='+Date.now(),{cache:'no-store'}); text=await rr.text();}catch(e){text='Could not load '+s.file}
-      }
-      const div=document.createElement('div');
-      div.className='song';
-      div.innerHTML=`<h3>${s.title}</h3><pre>${text.substring(0,600)}</pre><div class="lyric-fade">Tap to expand</div>${s.youtube?`<a href="${s.youtube}" target="_blank" class="buy-btn" style="margin-top:8px">▶ Watch</a>`:''}`;
-      div.addEventListener('click',()=>{div.classList.toggle('expanded'); haptic(10); const fade=div.querySelector('.lyric-fade'); if(fade) fade.textContent=div.classList.contains('expanded')?'Tap to collapse':'Tap to expand';});
-      list.appendChild(div);
-    }
-  }catch(e){document.getElementById('lyrics-list').innerHTML='<p style="color:#f55">Lyrics error '+e+'</p>'}
-}
-
-// BEATS
-let currentAudio=null;
-async function loadBeats(){
-  window.beatsLoaded=true;
-  try{
-    const r=await fetch('beats/data.json?v='+Date.now(),{cache:'no-store'});
-    const beats=await r.json();
-    document.getElementById('beats-list').innerHTML=beats.map(b=>`<div class="beat"><button class="beat-play" onclick="playBeat('${b.preview}','${b.name.replace(/'/g,"\'")}')">▶</button><div class="beat-info"><h4>${b.name}</h4><small>${b.license}</small></div><div style="text-align:right"><div class="beat-price">${b.price}</div>${b.stripe_link?`<a class="buy-btn" href="${b.stripe_link}" target="_blank">BUY</a>`:'<span class="buy-btn" style="opacity:.4">BUY</span>'}</div></div>`).join('');
-  }catch(e){}
-}
-function playBeat(src,title){
-  haptic(15);
-  if(currentAudio){currentAudio.pause();}
-  const audio=new Audio(src);
-  currentAudio=audio;
-  document.getElementById('miniTitle').textContent=title;
-  document.getElementById('miniPlayer').classList.add('show');
-  audio.play();
-  audio.addEventListener('timeupdate',()=>{
-    const pct=(audio.currentTime/audio.duration*100)||0;
-    document.getElementById('miniProgress').style.width=pct+'%';
-  });
-  audio.addEventListener('ended',()=>{document.getElementById('miniPlayer').classList.remove('show')});
-  document.getElementById('miniPlayBtn').onclick=()=>{if(audio.paused){audio.play(); document.getElementById('miniPlayBtn').textContent='❚❚';}else{audio.pause(); document.getElementById('miniPlayBtn').textContent='▶';} haptic(10);};
-}
-function closeMini(){document.getElementById('miniPlayer').classList.remove('show'); if(currentAudio) currentAudio.pause();}
-
-// Lightbox
-function openLightbox(src){document.getElementById('lbImg').src=src; document.getElementById('lightbox').classList.add('show'); haptic(10)}
-function sharePost(caption){haptic(15); if(navigator.share){navigator.share({title:'RYBAHYBRYD', text:caption, url:location.href}).catch(()=>{});} else {navigator.clipboard.writeText(caption); alert('Copied!');}}
-
-// Pull to refresh simple
-let startY=0;
-const feedView=document.getElementById('view-feed');
-feedView.addEventListener('touchstart',e=>{if(feedView.scrollTop===0) startY=e.touches[0].clientY},{passive:true});
-feedView.addEventListener('touchmove',e=>{
-  if(feedView.scrollTop===0){
-    const dy=e.touches[0].clientY-startY;
-    if(dy>30){document.getElementById('ptr').classList.add('pull');}
-  }
-},{passive:true});
-feedView.addEventListener('touchend',e=>{
-  const ptr=document.getElementById('ptr');
-  if(ptr.classList.contains('pull')){
-    ptr.textContent='↻ Refreshing...';
-    loadFeed().then(()=>{setTimeout(()=>{ptr.classList.remove('pull'); ptr.textContent='↻ PULL TO REFRESH';},600)});
-    haptic(20);
-  }
-});
-
-// SW
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js?v=4');}
 </script>
 </body>
 </html>
