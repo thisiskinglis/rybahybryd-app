@@ -3,45 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RYBAHYBRYD - APP</title>
+<title>RYBAHYBRYD - Official App</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#05050A">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{background:#000;color:#fff;min-height:100vh;display:flex;flex-direction:column}
-header{padding:24px;text-align:center;border-bottom:1px solid #222}
-header h1{letter-spacing:6px;font-size:18px;font-weight:900}
-.grid{flex:1;display:grid;grid-template-columns:1fr;gap:16px;padding:20px;max-width:600px;margin:0 auto;width:100%}
-@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
-.card{border:1px solid #333;border-radius:24px;padding:28px;background:#0a0a0a;transition:.2s;text-decoration:none;color:#fff;display:flex;flex-direction:column;gap:12px}
-.card:hover{border-color:#fff;transform:translateY(-2px)}
-.card h2{font-size:28px;letter-spacing:2px}
-.card p{color:#888;font-size:14px;line-height:1.4}
-.tag{display:inline-block;font-size:10px;letter-spacing:2px;border:1px solid #333;padding:4px 8px;border-radius:20px;width:fit-content}
-.feed{grid-column:span 2}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05050A;color:#fff;font-family:Inter,sans-serif;overflow-x:hidden;min-height:100vh}
+.bg-glow{position:fixed;top:-20%;left:-10%;width:80%;height:80%;background:radial-gradient(ellipse at center, rgba(120,60,255,0.18), transparent 70%);pointer-events:none;filter:blur(40px)}
+.wrap{max-width:1100px;margin:0 auto;padding:32px 20px 40px;position:relative;z-index:2}
+.top-logo{display:flex;justify-content:center;margin-bottom:32px}
+.top-logo img{width:96px;height:auto;filter:drop-shadow(0 0 20px rgba(255,255,255,0.3))}
+.hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:32px;align-items:center}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:24px}}
+.ryba{font-family:Syne,sans-serif;font-weight:800;font-size:72px;line-height:0.9;letter-spacing:-2px}
+@media(max-width:800px){.ryba{font-size:56px}}
+.ryba span{display:block}
+.ryba .l1{color:#C9A8FF;text-shadow:0 0 30px rgba(201,168,255,0.6)}
+.ryba .l2{color:#6B7CFF;text-shadow:0 0 30px rgba(107,124,255,0.6)}
+.tagline{margin-top:20px;font-size:18px;line-height:1.4;max-width:420px}
+.tagline b{font-weight:800}
+.tagline .p{color:#B07CFF}
+.tagline .c{color:#4ECDC4}
+.pills{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.pills span{border:1px solid #222;padding:4px 10px;border-radius:20px;font-size:9px;letter-spacing:1.5px;color:#555}
+.cards{display:flex;flex-direction:column;gap:14px}
+.card{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:16px;position:relative;overflow:hidden;transition:.2s;text-decoration:none;color:#fff;display:block}
+.card:hover{border-color:#333;transform:translateY(-2px)}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.card-top label{font-size:10px;letter-spacing:2px;color:#555;font-weight:700}
+.live{display:flex;align-items:center;gap:6px;background:rgba(107,255,138,0.1);border:1px solid rgba(107,255,138,0.2);padding:3px 8px;border-radius:20px;font-size:9px;letter-spacing:1px;color:#6BFF8A;font-weight:800}
+.live i{width:6px;height:6px;background:#6BFF8A;border-radius:50%;box-shadow:0 0 6px #6BFF8A;display:inline-block;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.card-main{margin-top:28px;display:flex;align-items:end;justify-content:space-between}
+.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C9A8FF,#6B7CFF);padding:1px}
+.avatar div{width:100%;height:100%;border-radius:50%;background:#0F0F14;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:10px}
+.bars{flex:1;margin:0 12px}
+.bars div{height:6px;border-radius:10px;margin-bottom:6px}
+.bars div:first-child{width:70%;background:#2A2A35}
+.bars div:last-child{width:45%;background:#1A1A24}
+.arrow{font-size:20px;color:#333}
+.small-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.small-card{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:14px;height:102px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:#fff;transition:.2s}
+.small-card:hover{border-color:#333}
+.social{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+.social a{border:1px solid #1E1E26;background:#0A0A0F;padding:6px 12px;border-radius:20px;font-size:9px;letter-spacing:1.5px;color:#555;text-decoration:none}
+.wave{margin-top:16px;width:100%;height:28px}
+.install-wrap{display:flex;justify-content:center;margin-top:40px;padding-bottom:20px}
+.install-btn{background:#fff;color:#2A1FFF;border:none;padding:18px 48px;border-radius:100px;font-weight:900;letter-spacing:1.5px;font-size:14px;cursor:pointer;box-shadow:0 10px 40px rgba(255,255,255,0.15);transition:.2s}
+.install-btn:hover{transform:scale(1.05)}
+.install-btn.hide{display:none}
+.ios{color:#666;font-size:11px;text-align:center;margin-top:12px;display:none}
 </style>
 </head>
 <body>
-<header><h1>RYBAHYBRYD</h1></header>
-<div class="grid">
-  <a href="feed/" class="card feed">
-    <span class="tag">LIVE NOW</span>
-    <h2>FEED</h2>
-    <p>Behind the scenes, voice notes, short clips. Raw, unfiltered.</p>
-  </a>
-  <a href="lyrics/" class="card">
-    <span class="tag">MUSIC</span>
-    <h2>LYRICS</h2>
-    <p>Videos + lyrics. Read what he really meant.</p>
-  </a>
-  <a href="beats/" class="card">
-    <span class="tag">COMING SOON</span>
-    <h2>BEATS</h2>
-    <p>Exclusive beats for sale. Preview + instant delivery.</p>
-  </a>
+<div class="bg-glow"></div>
+<div class="wrap">
+  <div class="top-logo"><img src="assets/images/rh-logo.png" onerror="this.style.display='none'" alt="RH"></div>
+  <div class="hero">
+    <div>
+      <div class="ryba"><span class="l1">RYBA</span><span class="l2">HYBRYD</span></div>
+      <div class="tagline"><b>From chaos to creation.</b> Music. <span class="p">Philosophy.</span> <span class="c">Transformation.</span> Legacy.</div>
+      <div class="pills"><span>DRAGON</span><span>FISH</span><span>STORYTELLER</span></div>
+    </div>
+    <div class="cards">
+      <a href="feed/" class="card"><div class="card-top"><label>FEED</label><span class="live"><i></i>LIVE NOW</span></div><div class="card-main"><div class="avatar"><div>RH</div></div><div class="bars"><div></div><div></div></div><div class="arrow">↗</div></div></a>
+      <div class="small-grid">
+        <a href="lyrics/" class="small-card"><div style="display:flex;justify-content:space-between"><label style="font-size:10px;letter-spacing:2px;color:#555;font-weight:700">LYRICS</label><span style="color:#333">↗</span></div><div><div style="font-size:12px;font-weight:800">VERSE ARCHIVE</div><div style="font-size:9px;color:#555;margin-top:4px;letter-spacing:1px">12 TRACKS</div></div></a>
+        <a href="beats/" class="small-card"><div style="display:flex;justify-content:space-between"><label style="font-size:10px;letter-spacing:2px;color:#555;font-weight:700">BEATS</label><span style="color:#333">↗</span></div><div><div style="font-size:12px;font-weight:800">BEAT LAB</div><div style="font-size:9px;color:#555;margin-top:4px;letter-spacing:1px">EXCLUSIVE</div></div></a>
+      </div>
+      <div class="social"><a href="#">YT • YOUTUBE</a><a href="#">IG • INSTAGRAM</a><a href="#">TT • TIKTOK</a><a href="#">FB • FACEBOOK</a></div>
+      <div class="wave"><svg viewBox="0 0 400 28" preserveAspectRatio="none"><path d="M0 14 L20 6 L40 18 L60 4 L80 16 L100 8 L120 20 L140 6 L160 14 L180 10 L200 18 L220 6 L240 14 L260 20 L280 8 L300 16 L320 4 L340 18 L360 10 L380 14 L400 14" fill="none" stroke="url(#g)" stroke-width="2"/><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#B07CFF"/><stop offset="50%" stop-color="#FF8A3D"/><stop offset="100%" stop-color="#4ECDC4"/></linearGradient></defs></svg></div>
+    </div>
+  </div>
+  <div class="install-wrap"><button id="installBtn" class="install-btn">INSTALL APP</button></div>
+  <div id="iosHint" class="ios">iPhone: Tap Share → Add to Home Screen</div>
 </div>
 <script>
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}
+let deferredPrompt;
+const btn=document.getElementById('installBtn');
+const iosHint=document.getElementById('iosHint');
+const isIos=/iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+if(isStandalone){btn.classList.add('hide')}
+else if(isIos){
+  btn.classList.remove('hide'); iosHint.style.display='block';
+  btn.onclick=()=>iosHint.scrollIntoView({behavior:'smooth'});
+}else{
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;btn.classList.remove('hide')});
+  btn.addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();const c=await deferredPrompt.userChoice;if(c.outcome==='accepted')btn.classList.add('hide');deferredPrompt=null}});
+  setTimeout(()=>{btn.classList.remove('hide')},800);
+}
 </script>
 </body>
 </html>
