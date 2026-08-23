@@ -3,21 +3,21 @@
     "id": 1,
     "type": "image",
     "caption": "Studio late night - new beat cooking",
-    "file": "../assets/images/post1.jpg",
+    "file": "/assets/images/post1.jpg",
     "date": "2026-08-20"
   },
   {
     "id": 2,
     "type": "voice",
     "caption": "Voice note: idea for hook",
-    "file": "../assets/audio/vn1.mp3",
+    "file": "/assets/audio/vn1.mp3",
     "date": "2026-08-19"
   },
   {
     "id": 3,
     "type": "video",
     "caption": "BTS from shoot",
-    "file": "../assets/videos/clip1.mp4",
+    "file": "/assets/videos/clip1.mp4",
     "date": "2026-08-18"
   }
 ]
