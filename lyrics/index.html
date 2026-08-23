@@ -1,11 +1,41 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LYRICS - RYBAHYBRYD</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#05050A;color:#fff;padding:20px;max-width:720px;margin:0 auto}a{color:#fff} .song{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:20px;margin-bottom:16px}</style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+body{background:#05050A;color:#fff;padding:20px;max-width:720px;margin:0 auto;min-height:100vh}
+a{color:#fff;text-decoration:none}
+header a{border:1px solid #333;padding:8px 14px;border-radius:20px;font-size:12px}
+.song{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:20px;margin-bottom:16px}
+.song h2{font-size:16px;letter-spacing:1px}
+.song pre{margin-top:12px;color:#AAA;white-space:pre-wrap;line-height:1.6;font-family:Inter,system-ui;font-size:13px;word-wrap:break-word}
+.btn{border:1px solid #fff;padding:8px 14px;border-radius:20px;font-size:11px;display:inline-block;margin-top:12px}
+.loading{color:#555;font-size:12px}
+</style>
 </head><body>
-<header><a href="../" style="text-decoration:none;border:1px solid #333;padding:8px 14px;border-radius:20px;font-size:12px">&larr; BACK</a><h1 style="margin-top:16px;letter-spacing:3px">LYRICS</h1></header>
+<header><a href="../">&larr; BACK</a><h1 style="margin-top:16px;letter-spacing:3px;font-size:20px">LYRICS</h1></header>
 <div id="list" style="margin-top:20px">Loading...</div>
 <script>
-fetch('data.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(songs=>{
- document.getElementById('list').innerHTML=songs.map(s=>`<div class="song"><h2>${s.title}</h2><p style="margin-top:12px;color:#888;white-space:pre-wrap;line-height:1.6">${s.lyrics}</p>${s.youtube?`<a href="${s.youtube}" target="_blank" style="display:inline-block;margin-top:12px;border:1px solid #fff;padding:8px 14px;border-radius:20px;font-size:11px">Watch video</a>`:''}</div>`).join('');
-});
+async function loadLyrics(){
+  const res = await fetch('data.json?v='+Date.now(), {cache:'no-store'});
+  const songs = await res.json();
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+  for(const s of songs){
+    const div = document.createElement('div');
+    div.className = 'song';
+    let lyricsText = s.lyrics || '';
+    // If file field exists, fetch the txt
+    if(s.file){
+      try{
+        const r = await fetch(s.file+'?v='+Date.now(), {cache:'no-store'});
+        lyricsText = await r.text();
+      }catch(e){
+        lyricsText = 'Could not load '+s.file;
+      }
+    }
+    div.innerHTML = `<h2>${s.title}</h2><pre>${lyricsText}</pre>${s.youtube?`<a class="btn" href="${s.youtube}" target="_blank">▶ Watch video</a>`:''}`;
+    list.appendChild(div);
+  }
+}
+loadLyrics();
 </script>
 </body></html>
