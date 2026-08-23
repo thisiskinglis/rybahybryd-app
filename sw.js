@@ -1,5 +1,5 @@
-const CACHE = 'ryb-v4';
-const SHELL = ['/', '/manifest.json'];
+const CACHE = 'ryb-v5';
+const SHELL = ['/', '/manifest.json', '/app/', '/app/index.html'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)));
   self.skipWaiting();
