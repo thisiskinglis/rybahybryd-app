@@ -1,14 +1,38 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FEED - RYBAHYBRYD</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#000;color:#fff;padding:20px;max-width:520px;margin:0 auto} .post{border:1px solid #222;border-radius:16px;padding:16px;margin-bottom:16px;background:#0a0a0a} .post img,.post video{width:100%;border-radius:12px;margin-top:12px} .post audio{width:100%;margin-top:12px} header a{color:#fff;text-decoration:none;border:1px solid #333;padding:8px 14px;border-radius:20px;font-size:12px}</style>
-</head><body><header><a href="../">← BACK</a><h1 style="margin-top:16px;letter-spacing:3px">FEED</h1></header><div id="feed"></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FEED - RYBAHYBRYD</title>
+<link rel="manifest" href="../manifest.json">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+body{background:#05050A;color:#fff;padding:20px;max-width:520px;margin:0 auto;min-height:100vh}
+a{color:#fff;text-decoration:none}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+header a{border:1px solid #222;padding:8px 14px;border-radius:20px;font-size:11px;letter-spacing:1px}
+.post{background:#0F0F14;border:1px solid #1E1E26;border-radius:18px;padding:16px;margin-bottom:16px}
+.post small{color:#555;font-size:10px;letter-spacing:1px}
+.post p{margin:10px 0 0;font-size:14px;line-height:1.4}
+.post img,.post video{width:100%;border-radius:12px;margin-top:12px;display:block;background:#000}
+.post audio{width:100%;margin-top:12px}
+.badge{display:inline-block;background:#111;border:1px solid #222;padding:2px 8px;border-radius:10px;font-size:9px;margin-right:6px}
+</style>
+</head><body>
+<header><a href="../">← BACK</a><div style="font-weight:800;letter-spacing:2px;font-size:12px">FEED</div><div style="width:60px"></div></header>
+<div id="feed">Loading...</div>
 <script>
-fetch('data.json').then(r=>r.json()).then(posts=>{
-  document.getElementById('feed').innerHTML = posts.map(p=>{
-    let m = '';
-    if(p.type==='image') m = `<img src="${p.file}">`;
-    if(p.type==='voice') m = `<audio controls src="${p.file}"></audio>`;
-    if(p.type==='video') m = `<video controls playsinline src="${p.file}"></video>`;
-    return `<div class="post"><small style="color:#666">${p.date} • ${p.type}</small><p style="margin:10px 0">${p.caption}</p>${m}</div>`;
-  }).join('');
-});
-</script></body></html>
+async function load(){
+  try{
+    const res = await fetch('data.json?v='+Date.now(), {cache:'no-store'});
+    const posts = await res.json();
+    document.getElementById('feed').innerHTML = posts.map(p=>{
+      let media = '';
+      if(p.type==='image') media = `<img src="${p.file}?v=${Date.now()}" onerror="this.style.display='none'" alt="">`;
+      if(p.type==='voice') media = `<audio controls preload="none" src="${p.file}"></audio>`;
+      if(p.type==='video') media = `<video controls playsinline preload="none" src="${p.file}"></video>`;
+      return `<div class="post"><div><span class="badge">${p.type.toUpperCase()}</span><small>${p.date}</small></div><p>${p.caption}</p>${media}</div>`;
+    }).join('');
+  }catch(e){
+    document.getElementById('feed').innerHTML = '<p style="color:#f55">Could not load data.json - '+e+'</p>';
+  }
+}
+load();
+</script>
+</body></html>
