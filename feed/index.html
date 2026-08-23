@@ -1,16 +1,17 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FEED - RYBAHYBRYD</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#000;color:#fff;padding:20px} a{color:#fff} .post{border:1px solid #222;border-radius:16px;padding:16px;margin-bottom:16px;background:#0a0a0a} header{margin-bottom:20px} header a{text-decoration:none;border:1px solid #333;padding:8px 14px;border-radius:20px;font-size:12px}</style>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#000;color:#fff;padding:20px;max-width:520px;margin:0 auto} a{color:#fff} .post{border:1px solid #222;border-radius:16px;padding:16px;margin-bottom:16px;background:#0a0a0a} .post img,.post video{width:100%;border-radius:12px;margin-top:12px;display:block} .post audio{width:100%;margin-top:12px} header{margin-bottom:20px} header a{text-decoration:none;border:1px solid #333;padding:8px 14px;border-radius:20px;font-size:12px}</style>
 </head><body>
 <header><a href="../">← BACK</a><h1 style="margin-top:16px;letter-spacing:3px">FEED</h1></header>
 <div id="feed"></div>
 <script>
 fetch('data.json').then(r=>r.json()).then(posts=>{
-  document.getElementById('feed').innerHTML = posts.map(p=>`
-    <div class="post">
-      <small style="color:#666">${p.date} • ${p.type}</small>
-      <p style="margin:10px 0">${p.caption}</p>
-      <small style="color:#555">${p.file}</small>
-    </div>`).join('');
+  document.getElementById('feed').innerHTML = posts.map(p=>{
+    let media = '';
+    if(p.type==='image') media = `<img src="${p.file}" alt="">`;
+    if(p.type==='voice') media = `<audio controls src="${p.file}"></audio>`;
+    if(p.type==='video') media = `<video controls playsinline src="${p.file}"></video>`;
+    return `<div class="post"><small style="color:#666">${p.date} • ${p.type}</small><p style="margin:10px 0;font-size:15px">${p.caption}</p>${media}</div>`;
+  }).join('');
 });
 </script>
 </body></html>
