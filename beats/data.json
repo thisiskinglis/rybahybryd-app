@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Dark Trap 140 BPM",
+    "price": "$49",
+    "preview": "../assets/audio/beat1.mp3",
+    "license": "MP3/WAV/Stems"
+  },
+  {
+    "id": 2,
+    "name": "Melodic Drill",
+    "price": "$79",
+    "preview": "../assets/audio/beat2.mp3",
+    "license": "MP3/WAV"
+  }
+]

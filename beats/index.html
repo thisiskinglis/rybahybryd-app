@@ -1,0 +1,11 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BEATS</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#000;color:#fff;padding:20px}a{color:#fff}.beat{border:1px solid #222;border-radius:16px;padding:20px;margin-bottom:16px;background:#0a0a0a;display:flex;justify-content:space-between;align-items:center}.btn{border:1px solid #fff;padding:8px 16px;border-radius:20px;text-decoration:none;font-size:12px;letter-spacing:1px}</style>
+</head><body>
+<header><a href="../" style="text-decoration:none;border:1px solid #333;padding:8px 14px;border-radius:20px;font-size:12px">← BACK</a><h1 style="margin-top:16px;letter-spacing:3px">BEATS</h1><p style="color:#666;margin-top:8px">Stripe checkout ready - just add links later</p></header>
+<div id="beats" style="margin-top:20px"></div>
+<script>
+fetch('data.json').then(r=>r.json()).then(beats=>{
+ document.getElementById('beats').innerHTML=beats.map(b=>`<div class="beat"><div><h3>${b.name}</h3><small style="color:#666">${b.license}</small></div><div style="text-align:right"><div style="margin-bottom:8px">${b.price}</div><a class="btn" href="#">BUY</a></div></div>`).join('');
+});
+</script>
+</body></html>
